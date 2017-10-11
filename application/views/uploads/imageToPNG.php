@@ -76,7 +76,7 @@
                     <ul class="treeview-menu">
                         <li><a href="<?php echo site_url('/audioconverter/upload_audio_to_mp3');?>"><i class="fa fa-circle-o"></i> Convert to MP3</a></li>
                         <li><a href="<?php echo site_url('/audioconverter/upload_audio_to_wav');?>"><i class="fa fa-circle-o"></i> Convert to WAV</a></li>
-                        <li><a href="<?php echo site_url('/audioconverter/upload_audio_to_aac');?>"><i class="fa fa-circle-o"></i> Convert to AAC</a></li>
+                        <li><a href="<?php echo site_url('/audioconverter/upload_audio_to_aac');?>"><i class="fa fa-circle-o"></i> Convert to FLAC</a></li>
                     </ul>
                 </li>
                 <li class="treeview">

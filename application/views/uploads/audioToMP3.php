@@ -75,7 +75,7 @@
                     <ul class="treeview-menu">
                         <li class="active"><a href="<?php echo site_url('/audioconverter/upload_audio_to_mp3');?>"><i class="fa fa-circle-o"></i> Convert to MP3</a></li>
                         <li><a href="<?php echo site_url('/audioconverter/upload_audio_to_wav');?>"><i class="fa fa-circle-o"></i> Convert to WAV</a></li>
-                        <li><a href="<?php echo site_url('/audioconverter/upload_audio_to_aac');?>"><i class="fa fa-circle-o"></i> Convert to AAC</a></li>
+                        <li><a href="<?php echo site_url('/audioconverter/upload_audio_to_aac');?>"><i class="fa fa-circle-o"></i> Convert to FLAC</a></li>
                     </ul>
                 </li>
                 <li class="treeview">
@@ -107,6 +107,7 @@
 
         <!-- Main content -->
         <section class="content">
+            <form enctype="multipart/form-data" method="post" action="<?php echo site_url('/audioconverter/export_mp3');?>" class="row-form">
             <div class="box box-default">
                 <div class="box-header with-border">
                     <h3 class="box-title">Options</h3>
@@ -116,34 +117,32 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label>Image Quality</label>
-                                <select class="form-control select2" name="speed" id="speed" style="width: 100%;">
-                                    <option value="low">Low</option>
-                                    <option value="high">High</option>
+                                <label>Change Audio Bitrate</label>
+                                <select class="form-control select2" name="bitrate" id="bitrate" style="width: 100%;">
+                                    <option value="24">24 kbps</option>
+                                    <option value="128">128 kbps</option>
+                                    <option value="320">320 kbps</option>
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label>Color Depth</label>
-                                <div class="form-control">
-                                    <input type="radio" name="filter" id="none" value="none" checked><label for="none">None</label>
-                                    <input type="radio" name="filter" id="grayscale" value="grayscale"><label for="grayscale">Grayscale</label>
-                                    <input type="radio" name="filter" id="sepia" value="sepia"><label for="sepia">Sepia</label>
-                                    <input type="radio" name="filter" id="threshold" value="sepia"><label for="threshold">Threshold</label>
-                                    <input type="number" id="threshold-val" value="127" data-threshold maxlength="3" min="0" max="255" style="display: none">
-                                </div>
+                                <label>Change Sampling Rate</label>
+                                <select class="form-control select2" name="sampling" id="sampling" style="width: 100%;">
+                                    <option value="8000">8000 Hz</option>
+                                    <option value="24000">24000 Hz</option>
+                                    <option value="48000">48000 Hz</option>
+                                </select>
                             </div>
                             <div class="form-group">
-                                <label>Image Resolution Width</label>
-                                <input class="form-control" type="text" name="width" id="width"/>
-                            </div>
-                            <div class="form-group">
-                                <label>Image Resolution Height</label>
-                                <input class="form-control" type="text" name="height" id="height"/>
+                                <label>Change Audio Channels</label>
+                                <select class="form-control select2" name="channel" id="channel" style="width: 100%;">
+                                    <option value="1">Mono</option>
+                                    <option value="2">Stereo</option>
+                                </select>
                             </div>
                             <div class="form-group">
                                 <label class="col-md-1">File</label>
                                 <div class="row col-md-1">
-                                    <input type="file" id="image">
+                                    <input type="file" id="file" name="file">
                                 </div>
                             </div>
                         </div>
@@ -152,10 +151,11 @@
 
                 <div class="box-footer">
                     <div class="col-md-12" align="right">
-                        <button type="button" class="btn btn-warning" id="compress" onclick="myFunction()"> Compress </button>
+                        <button type="submit" class="btn btn-warning" id="compress" > Compress </button>
                     </div>
                 </div>
             </div>
+            </form>
         </section>
     </div>
     <!-- /.content-wrapper -->
@@ -176,7 +176,9 @@
 <script type="text/javascript">
     $.widget.bridge('uibutton', $.ui.button);
     $(document).ready(function () {
-        $('#speed').select2();
+        $('#bitrate').select2();
+        $('#sampling').select2();
+        $('#channel').select2();
     })
 </script>
 <script src="<?php echo base_url('/assets/AdminLTE/bower_components/bootstrap/dist/js/bootstrap.min.js');?>"></script>
