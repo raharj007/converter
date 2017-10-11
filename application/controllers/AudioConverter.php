@@ -6,6 +6,8 @@
  * Date: 10/11/17
  * Time: 03:15
  */
+require_once "../../vendor/autoload.php";
+
 class AudioConverter extends CI_Controller
 {
     public function __construct() {
